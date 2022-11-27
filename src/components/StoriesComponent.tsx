@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Text, HStack, Link, VStack, Box, Highlight } from '@chakra-ui/react'
+import { Text, HStack, Link, VStack, Box, Highlight,Stack } from '@chakra-ui/react'
 
 const StoriesComponent = (props: PropsType) => {
 
@@ -18,7 +18,7 @@ const StoriesComponent = (props: PropsType) => {
             <HStack>
                 <Text color='blackAlpha.600'>{props.index + 1}<span>.</span></Text>
                 {props.query ?
-                    <HStack>
+                    <Stack direction={['column', 'row']}>
                         <Highlight query={props.query} styles={{ bg: '#FAFA33' }}>
                             {props.news.title}
                         </Highlight>
@@ -30,7 +30,7 @@ const StoriesComponent = (props: PropsType) => {
                             null
                         }
 
-                    </HStack>
+                    </Stack>
                     : <Link href={props.news.url}><Text color={'black.900'} fontSize={'md'} fontWeight={'400'}>{props.news.title}</Text></Link>}
             </HStack>
             <HStack paddingLeft={8} color='blackAlpha.600' fontSize={'xs'}>

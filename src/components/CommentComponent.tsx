@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box, Text, HStack, Link, VStack, Highlight } from '@chakra-ui/react'
+import { Box, Text, HStack, Link, VStack, Highlight,Stack } from '@chakra-ui/react'
 
 const CommentComponent = (props: PropsType) => {
 
@@ -18,7 +18,7 @@ const CommentComponent = (props: PropsType) => {
             <HStack>
                 <Text color='blackAlpha.600'>{props.index + 1}<span>.</span></Text>
                 {props.query ?
-                    <HStack>
+                    <Stack direction={['column', 'row']}>
                         <Box maxWidth={'60%'} fontSize={'xs'}>
                             <Highlight query={props.query} styles={{ bg: '#FAFA33' }} >
                                 {props.news.comment_text}
@@ -28,7 +28,7 @@ const CommentComponent = (props: PropsType) => {
                             <Link fontSize={'xs'} color='blackAlpha.600' href={props.news.story_url}>({props.news.story_url})</Link> :
                             null
                         }
-                    </HStack>
+                    </Stack>
                     : <HStack>
                         <Box maxWidth={'60%'} fontSize={'xs'}>
                             <Text>
