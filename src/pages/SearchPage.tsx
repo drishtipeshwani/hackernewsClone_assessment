@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Box, Select, Text, HStack, Heading, Input, Image, Button, Spinner } from '@chakra-ui/react'
+import { Box, Select, Text, HStack, Heading, Input, Image, Button } from '@chakra-ui/react'
 import PaginationComponent from '../components/PaginationComponent'
 import axios from 'axios'
 import hnLogo from '../assets/logo-hn.jpg'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { DateRange } from 'react-date-range'
+import { LoadingComponent } from '../components/LoadingComponent'
 
 
 const SearchPage = () => {
 
   const { query }: any = useParams()
   const [filteredNews, setFilteredNews] = useState<News[]>([])
-  const [timeOut, setTimeOut] = useState<boolean>(false)
   const [searchText, setSearchText] = useState<any>(query)
   const [type, setType] = useState<string>('story')
   const [tag, setTag] = useState<string>('(story)')
@@ -105,14 +105,15 @@ const SearchPage = () => {
 
   }, [currentPage, searchText, sortParam, time, tag, customStartTime, customEndTime, timeInstance])
 
-  setTimeout(() => {
-    if (filteredNews.length === 0) {
-      setTimeOut(true)
-    }
-  },60000)
+  const handleSearch = (value: string) => {
+    setSearchText(value)
+    setCurrentPage(0)
+  }
+
 
   const filterResultsOnType = (value: string) => {
     setType(value)
+    setCurrentPage(0)
     if (value === 'all') {
       setTag('(story,comment)')
     }
@@ -127,11 +128,12 @@ const SearchPage = () => {
 
   const sortResults = (value: string) => {
     setSortParam(value)
-
+    setCurrentPage(0)
   }
 
   const filterByTime = (value: string) => {
     setTimeInstance(value)
+    setCurrentPage(0)
     let currentDateInSeconds: number = Math.round(Date.now() / 1000)
     let searchTime: number = 0
     if (value === 'all') {
@@ -169,9 +171,7 @@ const SearchPage = () => {
     let endTime = Math.round(customDate[0].endDate.getTime() / 1000)
     setCustomStartTime(startTime)
     setCustomEndTime(endTime)
-
     setIsCustom(false)
-
   }
 
   return (
@@ -180,7 +180,7 @@ const SearchPage = () => {
         <HStack>
           <Image alt='hackernewslogo' src={hnLogo} w={10} h={10} />
           <Heading as='h6' size='xs'>Search HackerNews</Heading>
-          <Input placeholder="Search Stories by title, url or author" value={searchText} onChange={(e) => setSearchText(e.target.value)} backgroundColor='white' />
+          <Input placeholder="Search Stories by title, url or author" value={searchText} onChange={(e) => handleSearch(e.target.value)} backgroundColor='white' />
         </HStack>
       </Box>
       <Box bgColor={'#f6f6ef'}>
@@ -221,16 +221,7 @@ const SearchPage = () => {
           <Box p={1} paddingBottom={5}>
             <PaginationComponent newsData={filteredNews} currentPage={currentPage} setCurrentPage={setCurrentPage} query={searchText} />
           </Box> :
-          <Box display={'flex'} justifyContent='center' height='100vh' alignItems={'center'}>
-            {!timeOut ?
-            <Spinner
-              thickness='4px'
-              speed='0.65s'
-              emptyColor='gray.200'
-              color='#FB651E'
-              size='xl'
-            /> : <Text>No Results Found</Text>}
-          </Box>
+          <LoadingComponent />
         }
       </Box>
     </Box>

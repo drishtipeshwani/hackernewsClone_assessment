@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar'
 import PaginationComponent from '../components/PaginationComponent'
 import axios from 'axios'
+import { LoadingComponent } from '../components/LoadingComponent'
 
 const Home = () => {
 
@@ -43,15 +44,7 @@ const Home = () => {
           <SearchBar />
         </Box>
         :
-        <Box display={'flex'} justifyContent='center' height='100vh' alignItems={'center'}>
-          <Spinner
-            thickness='4px'
-            speed='0.65s'
-            emptyColor='gray.200'
-            color='#FB651E'
-            size='xl'
-          />
-        </Box>
+       <LoadingComponent/>
       }
     </Box>
 
