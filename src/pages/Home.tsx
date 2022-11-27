@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Box, Spinner } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
+import { Box} from '@chakra-ui/react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar'
@@ -17,7 +17,7 @@ const Home = () => {
       setNewsData([])
       let currentNewsData: News[] = []
       const response = await axios.get(`https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=30&page=${currentPage}`)
-      response.data.hits.map((result: any) => {
+      response.data.hits.forEach((result: any) => {
         let newsObject: News = {
           title: result.title,
           url: result.url,

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Flex, Text, HStack, Link, VStack, Box, Heading, Highlight } from '@chakra-ui/react'
+import { Text, HStack, Link, VStack, Box, Highlight } from '@chakra-ui/react'
 
 const StoriesComponent = (props: PropsType) => {
 
@@ -11,7 +11,7 @@ const StoriesComponent = (props: PropsType) => {
         if (props.news.points === null) {
             props.news.points = 0
         }
-    }, [])
+    }, [props.news])
 
     return (
         <VStack display='block' p={1} spacing={0} paddingBottom={0} paddingTop={0}>

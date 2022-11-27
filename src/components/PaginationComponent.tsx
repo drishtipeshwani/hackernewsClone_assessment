@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { Box, VStack, HStack, Button, Flex } from '@chakra-ui/react'
+import { VStack, HStack, Button} from '@chakra-ui/react'
 import StoriesComponent from './StoriesComponent'
 import CommentComponent from './CommentComponent'
 import { ArrowRightIcon, ArrowLeftIcon } from '@chakra-ui/icons'

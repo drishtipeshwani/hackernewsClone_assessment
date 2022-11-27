@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, HStack, Image, Heading } from '@chakra-ui/react'
 import Logo from '../assets/logo.png'
 

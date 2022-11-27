@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Box, Text, HStack, Link, Heading, VStack, Highlight } from '@chakra-ui/react'
+import { Box, Text, HStack, Link, VStack, Highlight } from '@chakra-ui/react'
 
 const CommentComponent = (props: PropsType) => {
 
@@ -11,7 +11,7 @@ const CommentComponent = (props: PropsType) => {
         if (props.news.points === null) {
             props.news.points = 0
         }
-    }, [])
+    }, [props.news])
 
     return (
         <VStack display='block' p={1} spacing={0} paddingBottom={0} paddingTop={0}>

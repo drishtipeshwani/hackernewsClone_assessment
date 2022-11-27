@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box, Select, Text, HStack, Heading, Input, Image, Button } from '@chakra-ui/react'
 import PaginationComponent from '../components/PaginationComponent'
@@ -40,7 +40,7 @@ const SearchPage = () => {
       if (timeInstance !== 'custom') {
         if (sortParam === 'created_at') {
           const response = await axios.get(`http://hn.algolia.com/api/v1/search_by_date?query=${searchText}&tags=${tag}&numericFilters=created_at_i>${time}&hitsPerPage=30&page=${currentPage}`)
-          response.data.hits.map((result: any) => {
+          response.data.hits.forEach((result: any) => {
             let newsObject: News = {
               title: result.title,
               url: result.url,
@@ -54,7 +54,7 @@ const SearchPage = () => {
           })
         } else {
           const response = await axios.get(`http://hn.algolia.com/api/v1/search?query=${searchText}&tags=${tag}&numericFilters=created_at_i>${time}&hitsPerPage=30&page=${currentPage}`)
-          response.data.hits.map((result: any) => {
+          response.data.hits.forEach((result: any) => {
             let newsObject: News = {
               title: result.title,
               url: result.url,
@@ -70,7 +70,7 @@ const SearchPage = () => {
       } else {
         if (sortParam === 'created_at') {
           const response = await axios.get(`http://hn.algolia.com/api/v1/search_by_date?query=${searchText}&tags=${tag}&numericFilters=created_at_i>${customStartTime},created_at_i<${customEndTime}&hitsPerPage=30&page=${currentPage}`)
-          response.data.hits.map((result: any) => {
+          response.data.hits.forEach((result: any) => {
             let newsObject: News = {
               title: result.title,
               url: result.url,
@@ -84,7 +84,7 @@ const SearchPage = () => {
           })
         } else {
           const response = await axios.get(`http://hn.algolia.com/api/v1/search?query=${searchText}&tags=${tag}&numericFilters=created_at_i>${customStartTime},created_at_i<${customEndTime}&hitsPerPage=30&page=${currentPage}`)
-          response.data.hits.map((result: any) => {
+          response.data.hits.forEach((result: any) => {
             let newsObject: News = {
               title: result.title,
               url: result.url,

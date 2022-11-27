@@ -1,7 +1,5 @@
-import React from 'react'
 import {
   ChakraProvider,
-  Box,
 } from "@chakra-ui/react"
 import Home from './pages/Home'
 import SearchPage from './pages/SearchPage'

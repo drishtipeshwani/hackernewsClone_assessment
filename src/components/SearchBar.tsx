@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Box, HStack, Input, Text, Heading, Flex } from '@chakra-ui/react'
+import { HStack, Input, Heading, Flex } from '@chakra-ui/react'
 
 
 const SearchBar = () => {
