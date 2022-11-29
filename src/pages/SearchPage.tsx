@@ -175,7 +175,7 @@ const SearchPage = () => {
   }
 
   return (
-    <Box m={5} p={5}>
+    <Box m={[0,5]} p={[0,5]}>
       <Box bgColor={'#FF7416'} p={2}>
         <HStack>
           <Image alt='hackernewslogo' src={hnLogo} w={10} h={10} />

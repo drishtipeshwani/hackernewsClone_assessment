@@ -35,7 +35,7 @@ const Home = () => {
   }, [currentPage])
 
   return (
-    <Box m={5} p={5}>
+    <Box m={[0,5]} p={[0,5]}>
       <Header />
       {newsData.length > 0 ?
         <Box bgColor={'#f6f6ef'} padding={1}>
